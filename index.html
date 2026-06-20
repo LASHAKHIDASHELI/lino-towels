@@ -16,9 +16,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: #2d3748;
-            background-color: #f9f9f7;
+            background-color: #ffffff;
             line-height: 1.6;
         }
 
@@ -45,7 +45,7 @@
             z-index: 50;
             background: white;
             padding: 1rem 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         nav .container {
@@ -99,27 +99,61 @@
 
         #hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&h=800&fit=crop');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #2D5A3D 0%, #4a7c5d 50%, #2D5A3D 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
             margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        #hero::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero-content p {
             font-size: 1.25rem;
             margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -140,7 +174,7 @@
 
         #products {
             text-align: center;
-            background: white;
+            background: #fafafa;
         }
 
         #products h2 {
@@ -161,6 +195,7 @@
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            background: white;
         }
 
         .product-card:hover {
@@ -177,6 +212,23 @@
             color: white;
             font-size: 2rem;
             font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.2; }
         }
 
         .product-info {
@@ -201,7 +253,7 @@
         }
 
         #features {
-            background: linear-gradient(to bottom, rgba(245,241,232,0.5), white);
+            background: white;
             padding: 4rem 0;
         }
 
@@ -218,15 +270,17 @@
         }
 
         .feature-card {
-            background: white;
+            background: linear-gradient(135deg, #f5f1e8 0%, #fafafa 100%);
             padding: 2rem;
             border-radius: 1rem;
             border: 1px solid #e0e0e0;
             text-align: center;
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 16px rgba(45, 90, 61, 0.1);
+            transform: translateY(-4px);
         }
 
         .feature-icon {
@@ -240,7 +294,7 @@
         }
 
         #contact {
-            background: white;
+            background: #fafafa;
         }
 
         .contact-grid {
@@ -283,6 +337,10 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .form-group {
@@ -332,7 +390,7 @@
         }
 
         footer {
-            background-color: #2D5A3D;
+            background: linear-gradient(135deg, #2D5A3D 0%, #1a3a2a 100%);
             color: #F5F1E8;
             padding: 3rem 0;
             text-align: center;
@@ -359,6 +417,10 @@
 
             nav a {
                 margin-right: 0;
+            }
+
+            .contact-form {
+                margin-top: 2rem;
             }
         }
     </style>
@@ -397,7 +459,7 @@
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image">
-                    <div style="text-align: center;">
+                    <div style="text-align: center; position: relative; z-index: 1;">
                         <div style="font-size: 4rem; margin-bottom: 0.5rem;">140</div>
                         <div>x 70 cm</div>
                     </div>
@@ -417,7 +479,7 @@
 
             <div class="product-card">
                 <div class="product-image">
-                    <div style="text-align: center;">
+                    <div style="text-align: center; position: relative; z-index: 1;">
                         <div style="font-size: 4rem; margin-bottom: 0.5rem;">100</div>
                         <div>x 50 cm</div>
                     </div>
@@ -500,7 +562,7 @@
             </div>
 
             <form class="contact-form" onsubmit="handleSubmit(event)">
-                <h3 style="color: #2D5A3D;">Send us a Message</h3>
+                <h3 style="color: #2D5A3D; margin-bottom: 1rem;">Send us a Message</h3>
 
                 <div class="form-group">
                     <label>Name</label>
@@ -540,9 +602,10 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <h3>Lino Towels</h3>
+            <h3 style="margin-bottom: 1rem;">Lino Towels</h3>
             <p style="margin: 1rem 0;">Premium luxury towels crafted for elegance and comfort.</p>
-            <p><strong>Phone:</strong> +995 599 223662 | <strong>Email:</strong> khidasheli2008@gmail.com | <strong>24/7</strong></p>
+            <p><strong>Phone:</strong> +995 599 223662</p>
+            <p><strong>Email:</strong> khidasheli2008@gmail.com</p>
             <p style="margin-top: 2rem; opacity: 0.8;">&copy; 2026 Lino Towels. All rights reserved.</p>
         </div>
     </footer>
